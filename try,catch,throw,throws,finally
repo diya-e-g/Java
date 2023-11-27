@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class CalculatorExample{
+
+    public static double divide(double numerator, double denominator) throws ArithmeticException {
+        if (denominator == 0) {
+            throw new ArithmeticException("Cannot divide by zero");
+        }
+        return numerator / denominator;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+         
+            System.out.print("Enter numerator: ");
+            double numerator = scanner.nextDouble();
+
+            System.out.print("Enter denominator: ");
+            double denominator = scanner.nextDouble();
+
+           
+            double result = divide(numerator, denominator);
+
+            System.out.println("Result of division: " + result);
+        } catch (ArithmeticException e) {
+            System.err.println("Error: " + e.getMessage());
+        } catch (Exception e) {
+          
+            System.err.println("An unexpected error occurred: " + e.getMessage());
+        } finally {
+            
+            System.out.println("Finally block: This will always be executed.");
+            
+          
+            scanner.close();
+        }
+
+        System.out.println("End of the program.");
+    }
+}
