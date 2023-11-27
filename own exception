@@ -1,0 +1,32 @@
+// Custom exception class
+class CustomException extends Exception {
+    public CustomException(String message) {
+        super(message);
+    }
+}
+
+public class CustomExceptionExample {
+
+    // Method that throws the custom exception
+    public static void checkAge(int age) throws CustomException {
+        if (age < 18) {
+            throw new CustomException("Age must be 18 or older to proceed.");
+        } else {
+            System.out.println("Welcome! You are eligible.");
+        }
+    }
+
+    public static void main(String[] args) {
+        // Example usage of the custom exception
+        try {
+            // Input: User's age
+            int userAge = 16;
+
+            // Calling the method that may throw the custom exception
+            checkAge(userAge);
+        } catch (CustomException e) {
+            // Handling the custom exception
+            System.err.println("Custom Exception: " + e.getMessage());
+        }
+    }
+}
