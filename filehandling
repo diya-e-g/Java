@@ -1,0 +1,54 @@
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+
+public class FileHandlingExample {
+
+    // Method to read from a file
+    public static void readFile(String fileName) {
+        try (FileReader fileReader = new FileReader(fileName);
+             BufferedReader bufferedReader = new BufferedReader(fileReader)) {
+
+            String line;
+            System.out.println("Contents of the file:");
+
+            while ((line = bufferedReader.readLine()) != null) {
+                System.out.println(line);
+            }
+
+        } catch (IOException e) {
+            System.err.println("Error reading from the file: " + e.getMessage());
+        }
+    }
+
+    // Method to write to a file
+    public static void writeFile(String fileName, String content) {
+        try (FileWriter fileWriter = new FileWriter(fileName);
+             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+
+            bufferedWriter.write(content);
+
+            System.out.println("Content successfully written to the file.");
+
+        } catch (IOException e) {
+            System.err.println("Error writing to the file: " + e.getMessage());
+        }
+    }
+
+    public static void main(String[] args) {
+        // Specify the file name
+        String fileName = "example.txt";
+
+        // Content to be written to the file
+        String content = "Hello, this is a file handling example in Java.\n"
+                + "We are reading from and writing to a file.";
+
+        // Write to the file
+        writeFile(fileName, content);
+
+        // Read from the file
+        readFile(fileName);
+    }
+}
