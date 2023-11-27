@@ -1,0 +1,64 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class BinarySearchExample {
+
+    // Binary search algorithm
+    public static int binarySearch(int[] array, int target) {
+        int left = 0;
+        int right = array.length - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            if (array[mid] == target) {
+                return mid; // Element found
+            } else if (array[mid] < target) {
+                left = mid + 1; // Search the right half
+            } else {
+                right = mid - 1; // Search the left half
+            }
+        }
+
+        return -1; // Element not found
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Input: Size of the array
+        System.out.print("Enter the size of the array: ");
+        int size = scanner.nextInt();
+        int[] sortedArray = new int[size];
+
+        // Input: Elements of the array
+        System.out.println("Enter the elements of the sorted array:");
+
+        for (int i = 0; i < size; i++) {
+            System.out.print("Element " + (i + 1) + ": ");
+            sortedArray[i] = scanner.nextInt();
+        }
+
+        // Sorting the array (assuming it's not already sorted)
+        Arrays.sort(sortedArray);
+
+        // Display the sorted array
+        System.out.println("Sorted Array: " + Arrays.toString(sortedArray));
+
+        // Input: Target element to search
+        System.out.print("Enter the element to search: ");
+        int target = scanner.nextInt();
+
+        // Perform binary search
+        int result = binarySearch(sortedArray, target);
+
+        // Display the result
+        if (result != -1) {
+            System.out.println("Element " + target + " found at index " + result);
+        } else {
+            System.out.println("Element " + target + " not found in the array.");
+        }
+
+        scanner.close();
+    }
+}
